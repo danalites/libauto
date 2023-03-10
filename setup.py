@@ -143,6 +143,7 @@ setup(
         "pyyaml==6.0",
         "pygb @ git+https://github.com/danalites/pygb.git@main#egg=pygb",
         # "selenium_stealth",
+        "selenium-wire==5.1.0",
         "webdriver_manager==3.8.3",
         "undetected_chromedriver",
         "pyperclip==1.8.2",
