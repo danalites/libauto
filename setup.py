@@ -141,7 +141,7 @@ setup(
     description='RTE for AuTool Framework',
     install_requires=[
         "pyyaml==6.0",
-        "git+https://github.com/danalites/pygb.git@main",
+        "pygb @ git+https://github.com/danalites/pygb.git@main#egg=pygb",
         # "selenium_stealth",
         "webdriver_manager==3.8.3",
         "undetected_chromedriver",
