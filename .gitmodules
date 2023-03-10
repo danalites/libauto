@@ -1,0 +1,8 @@
+[submodule "extern/pybind11"]
+	path = extern/pybind11
+	url = ../../pybind/pybind11
+	branch = stable
+[submodule "extern/libuiohook"]
+	path = extern/libuiohook
+	url = ../../kwhat/libuiohook
+	branch = 1.2

@@ -1,0 +1,12 @@
+---
+ task: keyboard-on-press-event
+ version: 2022-09-03 13:00 UTC
+
+ actions:
+   # wait for user to input 1,2,3,4
+   - event.on(__KEY_PRESS, {{ {'keys':[1,2,3,4]} }}) => $KEY:
+      - cmd.if( {{$KEY == '1'}} ):
+          - cmd.print(key 1 pressed)
+
+   # event is cleared once task is stopped
+   - cmd.sleep(10000s)

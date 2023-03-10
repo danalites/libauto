@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import sys
+import time
+
+from libauto import load_tasks, new_task_sch
+from pathlib import Path
+
+
+def locateScripts(ymls):
+    matches = list()
+    for ymlName in ymls:
+        found = False
+        if Path.exists(Path(f'{ymlName}.yaml')):
+            found = True
+            matches.append(f"{ymlName}.yaml")
+        else:
+            for path in Path('apps/').rglob(f'{ymlName}.yaml'):
+                matches.append(path)
+                found = True
+                break
+        if not found:
+            print(f"[ INFO ] cannot find \"{ymlName}\" in the database")
+
+    ts = new_task_sch()
+    tasks = load_tasks(matches)
+
+    ts.submit(tasks)
+    uuid = [ _.uuid for _ in tasks ][0]
+
+    # time.sleep(2)
+    event = {
+        "event": "I_EVENT_TASK_REQ",
+        "uuid": uuid,
+        "value": {
+            # registered by key.listen, resp to event.on task
+            "type": "eventTask",
+            "eventName": "PRESS_KEY_1234",
+            "args": "1",
+        }
+    }
+    # ts.event_proxy.resolve(event)
+
+    time.sleep(180000)
+    ts.cancel_task(tasks[0].uuid)
+    ts.event_loop.call_soon_threadsafe(ts.event_loop.stop)
+
+locateScripts(sys.argv[1:])

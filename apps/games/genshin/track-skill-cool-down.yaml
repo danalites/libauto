@@ -1,0 +1,16 @@
+---
+ task: track-skill-cool-down
+
+ actions:   
+    # 在放e，提取对应角色 skill 冷却时间, 在冷却结束后标记
+    - event.on(__KEY_PRESS, {{ {'keys':'E'} }}) => $val:
+      - window.ocr( {{ [12,12,12,12] }} ) => $time
+      - cmd.sleep( {{$time}}s )
+      - db.read(CURRENT_ROLE) => $role
+      - key.press($role)
+         
+    # 或者切角色的时候
+    - event.on(__KEY_PRESS, {{ {'keys':[1,2,3,4]} }}) => $role:
+      - db.write(CURRENT_ROLE, {{ $role }})
+
+    - cmd.sleep(10000s)
