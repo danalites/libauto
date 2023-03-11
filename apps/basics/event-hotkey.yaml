@@ -1,9 +1,0 @@
----
- task: event-hotkey
- version: 2022-09-03 13:00 UTC
-
- configs:
-    hotkey: 1
-
- actions:
-  - cmd.print(task running)
