@@ -1,6 +1,0 @@
-pydub==0.25.1
-SpeechRecognition==3.8.1
-Flask==2.2.2
-opencv-python-headless==4.6.0.66
-numpy==1.23.2
-pandas==1.5.1
